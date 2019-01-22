@@ -6,13 +6,23 @@ import org.kde.kirigami 2.4 as Kirigami
 import Mycroft 1.0 as Mycroft
 
 Item {
+    function getOpacity(volume) {
+        if (volume < 2)
+            return 0.7;
+        else if (volume < 5)
+            return 0.8;
+        else if (volume < 8)
+            return 0.9;
+        else
+            return 1.0;
+    }
+
     function getLength(volume, pos) {
-        var val = (volume * 2 + pos);
+        var val = (volume * 2) + (pos * 2);
         if (val < 0)
             val = 0;
         else if (val > 10)
-        val = 10;
-        console.log(val)
+            val = 10;
         return 36 + 36 * val;
     }
 
@@ -40,6 +50,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 36
                     radius: 18
+                    opacity: getOpacity(sessionData.volume)
                     height: getLength(sessionData.volume, -2)
                     color: "#40DBB0"
                 }
@@ -54,6 +65,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 36
                     radius: 18
+                    opacity: getOpacity(sessionData.volume)
                     height: getLength(sessionData.volume, -1)
                     color: "#40DBB0"
                 }
@@ -68,6 +80,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 36
                     radius: 18
+                    opacity: getOpacity(sessionData.volume)
                     height: getLength(sessionData.volume, 0)
                     color: "#40DBB0"
                 }
@@ -82,6 +95,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 36
                     radius: 18
+                    opacity: getOpacity(sessionData.volume)
                     height: getLength(sessionData.volume, -1)
                     color: "#40DBB0"
                 }
@@ -96,6 +110,7 @@ Item {
                     anchors.verticalCenter: parent.verticalCenter
                     width: 36
                     radius: 18
+                    opacity: getOpacity(sessionData.volume)
                     height: getLength(sessionData.volume, -2)
                     color: "#40DBB0"
                 }
